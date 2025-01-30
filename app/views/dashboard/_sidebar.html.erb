@@ -1,0 +1,47 @@
+<!-- SIDEBAR -->
+<div class="menu-dashboard open">
+    <div class="top-menu">
+        <div class="logo">
+            <%= image_tag 'logo.svg', alt: 'Logo', class: 'mi-clase-css' %>
+            <span>TuMejorWeb</span>
+        </div>
+        <div class="toggle">
+            <i class='bx bx-menu'></i>
+        </div>
+    </div>
+
+    <!-- Usuario -->
+    <div class="user-menu">
+        <i class="fa fa-user"></i>
+        <span><%= @current_user.name %></span>
+        <div class="dropdown">
+            <%= link_to portal_logout_path, data: { turbo_method: :put }, class: "logout-link" do %>
+                <i class="fa fa-sign-out"></i> Cerrar sesión
+            <% end %>
+        </div>
+    </div>
+
+    <!--<div class="input-search">
+        <i class='bx bx-search'></i>
+        <input type="text" class="input" placeholder="Buscar">
+    </div>-->
+    <br>
+    <div class="menu">
+        <%= link_to portal_home_path, class: "enlace" do %>
+            <i class="bx bx-grid-alt"></i>
+            <span>Dashboard</span>
+        <% end %>
+
+        <% if @current_user.email == ENV['USER_ADMIN']%>
+            <%= link_to admin_users_path, class: "enlace" do %>
+                <i class="fa fa-users"></i><span>
+                <span>Usuarios</span>
+            <% end %>
+        <% end %>
+
+        <% if @current_user.email != ENV['USER_ADMIN']%>
+            <div class="enlace"><i class="fa fa-calendar"></i><span>Charlas</span></div>
+            <div class="enlace"><i class="fa fa-calendar-days"></i><span>Mis Charlas</span></div>
+        <% end %>
+    </div>
+</div>

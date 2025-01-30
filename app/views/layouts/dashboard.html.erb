@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" 
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" 
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag "dashboard", media: "all", "data-turbo-track": "reload" %>
+  <%= javascript_importmap_tags %>
+  <%= javascript_include_tag "dashboard", "data-turbo-track": "reload" %>
+</head>
+<body>
+  <div data-controller="dashboard" class="dashboard-container">
+    <%#= render "dashboard/header" %> <!-- Encabezado -->
+      <% flash.each do |type, message| %>
+        <div class="alert alert-<%= type == 'alert' ? 'danger' : 'success' %>">
+          <%= message %>
+        </div>
+      <% end %>
+
+      <%= render "dashboard/sidebar" %> <!-- Sidebar -->
+
+      <div class="main-content">
+        <%= yield %> <!-- Aquí se cargarán las vistas de cada módulo -->
+      </div>
+  </div>
+
+  
+</body>
+</html>

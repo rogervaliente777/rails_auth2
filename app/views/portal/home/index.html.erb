@@ -1,0 +1,27 @@
+<!--<div class="header">
+    <div class="breadcrumbs">
+        <span><%#= link_to "Inicio", portal_home_path %></span> /
+    </div>
+</div>-->
+<div class="header-content">
+    <div class="breadcrumbs">
+        <strong><span><%= link_to "Inicio /", portal_home_path %></span></strong>
+    </div>
+    <!--<div class="actions">
+        <button class="btn btn-primary">Agregar</button>
+        <button class="btn btn-danger">Eliminar</button>
+    </div>-->
+</div>
+<hr>
+<div class="content">
+    <!-- Mostrar Flash Messages -->
+    <% if flash[:notice] %>
+      <div class="alert alert-success"><%= flash[:notice] %></div>
+    <% elsif flash[:alert] %>
+      <div class="alert alert-danger"><%= flash[:alert] %></div>
+    <% end %>
+
+    <h2>Bienvenido al Home</h2>
+    <p>Aquí podrás visualizar la información y acceder a diferentes módulos de tu aplicación.</p>
+    <hr>
+</div>

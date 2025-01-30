@@ -1,0 +1,46 @@
+<% if @user.present? %>
+    <% if @user.errors.any? %>
+    <div class="alert alert-danger">
+        <ul>
+        <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+        <% end %>
+        </ul>
+    </div>
+    <% end %>
+<% end %>
+
+<div class="d-flex justify-content-center align-items-center vh-100 bg-light">
+  <div class="card shadow-lg p-4" style="width: 400px;">
+    <h2 class="text-center mb-4">Registrarse</h2>
+
+    <!-- Mostrar Flash Messages -->
+    <% if flash[:notice] %>
+      <div class="alert alert-success"><%= flash[:notice] %></div>
+    <% elsif flash[:alert] %>
+      <div class="alert alert-danger"><%= flash[:alert] %></div>
+    <% end %>
+
+    <%= simple_form_for :user, url: portal_signup_path, method: :post, html: { class: "needs-validation" } do |form| %>
+      <div class="mb-3">
+        <%= form.input :name, label: "Nombre completo", required: true, input_html: { class: "form-control" } %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.input :email, label: "Correo electrónico", required: true, input_html: { class: "form-control" } %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.input :password, label: "Contraseña", required: true, input_html: { class: "form-control" } %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.input :password_confirmation, label: "Confirmar contraseña", required: true, input_html: { class: "form-control" } %>
+      </div>
+
+      <div class="d-grid">
+        <%= form.button :submit, "Registrarse", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>
