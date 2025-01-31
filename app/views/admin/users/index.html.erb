@@ -34,7 +34,7 @@
                 <tr>
                     <td><%= index + 1 %></td> <!-- Agrega 1 porque el index empieza en 0 -->
                     <td><%= user.name rescue '' %></td>
-                    <td><%= user.email rescue ''%></td>
+                    <td><%= user.email rescue '' %></td>
                     <td><%= user.valid? ? 'Activo' : 'Inactivo' %></td>
                     <td><%= user.created_at.strftime("%d/%m/%Y %H:%M") %></td>
                 </tr>

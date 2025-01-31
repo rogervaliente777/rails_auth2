@@ -1,34 +1,32 @@
+<div class="logo-container">
+  <!--<img src="/assets/moodlemoot_logo.png" alt="MoodleMoot Logo">-->
+</div>
+<div class="login-container">
+  <h2>Validando Usuario</h2>
+  <% if flash[:notice] %>
+    <div class="alert alert-success text-center"><%= flash[:notice] %></div>
+  <% elsif flash[:alert] %>
+    <div class="alert alert-danger text-center"><%= flash[:alert] %></div>
+  <% end %>
+  
 
+  <!-- Centered text -->
+  <p class="text-center">Por favor ingresa el código OTP enviado a tu correo</p>
 
-<div class="d-flex justify-content-center align-items-center vh-100 bg-light">
-  <div class="card shadow-lg p-4" style="width: 400px;">
-    <h2 class="text-center mb-4">Validando Usuario</h2>
+  <%= simple_form_for :user, url: portal_signup_create_path, method: :post, html: { class: "needs-validation", id: "otp-form" } do |form| %>
+    <!-- JWT Input -->
+    <%= form.hidden_field :jwt_token, value: session[:jwt_token] %>
 
-    <!-- Mostrar Flash Messages -->
-    <% if flash[:notice] %>
-      <div class="alert alert-success"><%= flash[:notice] %></div>
-    <% elsif flash[:alert] %>
-      <div class="alert alert-danger"><%= flash[:alert] %></div>
-    <% end %>
-
-    <!-- Centered text -->
-    <p class="text-center">Por favor ingresa el código OTP enviado a tu correo</p>
-
-    <%= simple_form_for :user, url: portal_signup_create_path, method: :post, html: { class: "needs-validation", id: "otp-form" } do |form| %>
-      <!-- JWT Input -->
-      <%= form.hidden_field :jwt_token, value: session[:jwt_token] %>
-
-      <!-- OTP Input -->
-      <div class="mb-3">
-        <%= form.input :otp_code, required: true, label: false, input_html: { class: "otp-input", id: "otp-input", type: "tel", maxlength: 6, pattern: "[0-9]{6}", oninput: "moveFocus(event)", autocomplete: "off", inputmode: "numeric" } %>
-        <div id="otp-error" style="color: red; display: none;">Por favor ingresa los 6 dígitos del código OTP.</div>
-      </div>
-      <br>
-      <div class="d-grid">
-        <%= form.button :submit, "Validar", class: "btn btn-primary" %>
-      </div>
-    <% end %>
-  </div>
+    <!-- OTP Input -->
+    <div class="mb-3">
+      <%= form.input :otp_code, required: true, label: false, input_html: { class: "otp-input", id: "otp-input", type: "tel", maxlength: 6, pattern: "[0-9]{6}", oninput: "moveFocus(event)", autocomplete: "off", inputmode: "numeric" } %>
+      <div id="otp-error" style="color: red; display: none;">Por favor ingresa los 6 dígitos del código OTP.</div>
+    </div>
+    <br>
+    <div class="d-grid">
+      <%= form.button :submit, "Validar", class: "btn btn-primary" %>
+    </div>
+  <% end %>
 </div>
 
 <!-- Add styles and JavaScript for OTP input -->

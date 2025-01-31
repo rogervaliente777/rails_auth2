@@ -37,10 +37,14 @@
                 <i class="fa fa-users"></i><span>
                 <span>Usuarios</span>
             <% end %>
+
+            <%= link_to admin_charlas_path, class: "enlace" do %>
+                <i class="fa fa-calendar"></i><span>
+                <span>Charlas</span>
+            <% end %>
         <% end %>
 
         <% if @current_user.email != ENV['USER_ADMIN']%>
-            <div class="enlace"><i class="fa fa-calendar"></i><span>Charlas</span></div>
             <div class="enlace"><i class="fa fa-calendar-days"></i><span>Mis Charlas</span></div>
         <% end %>
     </div>

@@ -12,13 +12,14 @@ Rails.application.routes.draw do
     
     #home
     get "/home", to: "home#index"
+    get "/charlas", to: "conferences#index"
   end
 
   # Namespace para Admin
   namespace :admin do
     # Ejemplo de rutas para un módulo Admin
     resources :users, only: [:index, :show, :edit, :update, :destroy]
-    resources :dashboard, only: [:index]
+    get "charlas", to: "conferences#index"
   end
 
   # Ruta para pruebas (puedes eliminar o mover esto a un namespace si es necesario)
